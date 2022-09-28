@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+LOG=/var/log/daemon.log
+
+check_log() {
+  for i in 1 2 3 4 5; do
+    grep "$1" $LOG && return 0
+    sleep 1
+  done
+  return 1
+}
+
+echo "=== service ==="
+service logd restart # connect to rsyslog after it is installed
+service logd status || ERR="$ERR service"
+
+echo "=== ha_logger ==="
+ha_logger autopkgtest-message
+check_log 'cluster:.*autopkgtest-message' || ERR="$ERR ha_logger"
+
+echo "=== logtest ==="
+/usr/lib/heartbeat/logtest 10 2>&1 || true
+check_log 'logtest:.*total message dropped: 0' || ERR="$ERR logtest"
+
+if [ "$ERR" ]; then
+  tail -n 20 $LOG
+  echo "Failed checks:$ERR"
+  exit 1
+fi
