@@ -24,5 +24,3 @@ libstonith.so.1 libstonith1 #MINVER#
  stonith_types@Base 0
  stonithimports@Base 0
  strdown@Base 1.0.12
- strlcat@Base 0
- strlcpy@Base 0
