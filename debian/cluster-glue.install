@@ -85,7 +85,7 @@ usr/share/cluster-glue/ha_cf_support.sh
 usr/share/cluster-glue/openais_conf_support.sh
 usr/share/cluster-glue/ha_log.sh
 usr/lib/stonith/plugins/xen0-ha-dom0-stonith-helper
-lib/systemd/system/logd.service
+${env:systemdsystemunitdir}/logd.service
 usr/share/man/man8/meatclient.8 
 usr/share/man/man8/hb_report.8
 usr/share/man/man8/ha_logd.8

@@ -22,7 +22,7 @@ Build-Depends:
  libbz2-dev,
  libcurl4-openssl-dev | libcurl3-openssl-dev,
  libglib2.0-dev,
- libltdl3-dev,
+ libltdl-dev,
  libopenhpi-dev [!hurd-any],
  libopenipmi-dev [!hurd-any],
  libsensors-dev [!hurd-any],
@@ -32,6 +32,7 @@ Build-Depends:
  libxml2-utils,
  openssh-client <!nocheck>,
  perl,
+ pkgconf,
  psmisc,
  python3,
  systemd [linux-any],
@@ -39,7 +40,7 @@ Build-Depends:
  xsltproc,
  zlib1g-dev
 Rules-Requires-Root: no
-Standards-Version: 4.5.1
+Standards-Version: 4.6.2
 Homepage: https://github.com/ClusterLabs/cluster-glue
 Vcs-Browser: https://salsa.debian.org/ha-team/cluster-glue
 Vcs-Git: https://salsa.debian.org/ha-team/cluster-glue.git
@@ -58,7 +59,6 @@ Depends: ${shlibs:Depends},
  libplumb2 (>= ${binary:Version}),
  libplumbgpl2 (>= ${binary:Version}),
  libstonith1 (>= ${binary:Version}),
- lsb-base (>= 3.0-6)
 Pre-Depends: ${misc:Pre-Depends}
 Suggests:
  ipmitool

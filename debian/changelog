@@ -1,3 +1,30 @@
+cluster-glue (1.0.12-22) unstable; urgency=medium
+
+  [ Valentin Vidic ]
+  * Drop lsb-base dependency
+  * Update Standards-Version to 4.6.2
+  * Update test to use /var/log/syslog
+  * Update lintian-overrides
+
+  [ Helmut Grohne ]
+  * Fix FTBFS when systemd.pc changes systemdsystemunitdir. (Closes: #1052625)
+
+ -- Valentin Vidic <vvidic@debian.org>  Tue, 24 Oct 2023 20:23:52 +0200
+
+cluster-glue (1.0.12-21) unstable; urgency=medium
+
+  [ Lucas Kanashiro ]
+  * d/t/logd: use journalctl to get logs if $LOG is not available
+
+  [ Valentin Vidic ]
+  * Update watch file url
+  * Update build dependency on libltdl-dev (Closes: #1008889)
+  * Add retries to logd autopkgtest
+  * Update Standards-Version to 4.6.0
+  * Update copyright file
+
+ -- Valentin Vidic <vvidic@debian.org>  Sun, 10 Apr 2022 16:17:14 +0200
+
 cluster-glue (1.0.12-20) unstable; urgency=medium
 
   [ Helmut Grohne ]
