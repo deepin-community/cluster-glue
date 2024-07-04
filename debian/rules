@@ -9,6 +9,8 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 # lib tool gets it's chance to do anything.
 # export DEB_LDFLAGS_MAINT_APPEND=-Wl,-z,defs
 
+export systemdsystemunitdir = $(shell pkgconf --variable=systemdsystemunitdir systemd | sed s,^/,,)
+
 # main packaging script based on dh7 syntax
 %:
 	dh $@ --with python3

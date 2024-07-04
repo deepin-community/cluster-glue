@@ -2,11 +2,20 @@
 
 set -e
 
-LOG=/var/log/daemon.log
+LOG=/var/log/syslog
+
+log_checker() {
+  if [ -f $LOG ]; then
+    grep "$1" $LOG && return 0
+  else
+    journalctl -u logd.service --grep "$1" && return 0
+  fi
+  return 1
+}
 
 check_log() {
   for i in 1 2 3 4 5; do
-    grep "$1" $LOG && return 0
+    log_checker "$1" && return 0
     sleep 1
   done
   return 1
@@ -17,15 +26,22 @@ service logd restart # connect to rsyslog after it is installed
 service logd status || ERR="$ERR service"
 
 echo "=== ha_logger ==="
-ha_logger autopkgtest-message
-check_log 'cluster:.*autopkgtest-message' || ERR="$ERR ha_logger"
+for i in 1 2 3 4 5; do # logd might not be available right away
+  ha_logger autopkgtest-message 2>&1 && break
+  sleep 1
+done
+check_log 'autopkgtest-message' || ERR="$ERR ha_logger"
 
 echo "=== logtest ==="
 /usr/lib/heartbeat/logtest 10 2>&1 || true
-check_log 'logtest:.*total message dropped: 0' || ERR="$ERR logtest"
+check_log 'total message dropped: 0' || ERR="$ERR logtest"
 
 if [ "$ERR" ]; then
-  tail -n 20 $LOG
+  if [ -f $LOG ]; then
+    tail -n 20 $LOG
+  else
+    journalctl -u logd.service -n 20
+  fi
   echo "Failed checks:$ERR"
   exit 1
 fi

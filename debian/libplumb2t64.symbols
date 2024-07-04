@@ -1,4 +1,4 @@
-libplumb.so.2 libplumb2 #MINVER#
+libplumb.so.2 libplumb2t64 #MINVER#
 * Build-Depends-Package: libplumb2-dev
  CompressFuncs@Base 0
  DisableProcLogging@Base 0
@@ -304,8 +304,6 @@ libplumb.so.2 libplumb2 #MINVER#
  string_list_pack@Base 0
  string_list_pack_length@Base 0
  string_list_unpack@Base 0
- strlcat@Base 0
- strlcpy@Base 0
  struct_display_as_xml@Base 0
  struct_display_print_spaces@Base 0
  struct_netstringlen@Base 0

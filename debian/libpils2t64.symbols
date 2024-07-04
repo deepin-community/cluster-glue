@@ -1,4 +1,4 @@
-libpils.so.2 libpils2 #MINVER#
+libpils.so.2 libpils2t64 #MINVER#
 * Build-Depends-Package: libpils2-dev
  DelPILPluginUniv@Base 0
  NewPILPluginUniv@Base 0
@@ -18,5 +18,3 @@ libpils.so.2 libpils2 #MINVER#
  PilPluginUnivSetLog@Base 0
  PilPluginUnivSetMemalloc@Base 0
  nosuchfunctionname@Base 0
- strlcat@Base 0
- strlcpy@Base 0
