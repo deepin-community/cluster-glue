@@ -1,4 +1,4 @@
-liblrm.so.2 liblrm2 #MINVER#
+liblrm.so.2 liblrm2t64 #MINVER#
 * Build-Depends-Package: liblrm2-dev
  closefiles@Base 0
  copy_str_table@Base 0
